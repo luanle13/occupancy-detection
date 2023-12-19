@@ -131,9 +131,15 @@ export function Prediction() {
         </Form>
       </div>
       <div className="md:w-full mt-4 md:mt-0 flex items-center justify-center">
-        <label className="text-6xl text-center">{`Room Occupancy: ${
-          result ?? "..."
-        }`}</label>
+        {/* Display error messages */}
+        {Object.values(form.formState.errors).map((error, index) => (
+          <label key={index} className="text-red-500">
+            {error.message}
+          </label>
+        ))}
+        <label className="text-6xl text-center">
+          {`Room Occupancy: ${result ?? "..."}`}
+        </label>
       </div>
     </div>
   );
