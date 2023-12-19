@@ -19,8 +19,8 @@ scaler.fit(df_train)
 def raw_to_df(data):
     input = [
         {
-            'date': data['date'],
             'Temperature': data['temperature'],
+            'Humidity': data['humidity'],
             'Light': data['light'],
             'CO2': data['co2'],
             'HumidityRatio': data['humidityRatio'],
@@ -28,22 +28,6 @@ def raw_to_df(data):
     ]
     df = pd.DataFrame(input)
     return df
-
-
-# def encode_data(data):
-#     output_data = data
-#     for file_name in file_list:
-#         column = file_name.split('.')[0]
-#         if column == 'income':
-#             continue
-#         with open(f'./categories/{file_name}', 'r') as file:
-#             labels = []
-#             for line in file:
-#                 labels.append(line.strip())
-#         label_encoder = LabelEncoder()
-#         label_encoder.fit(labels)
-#         output_data[column] = label_encoder.transform(output_data[column])
-#     return output_data
 
 
 def standardize(data):
