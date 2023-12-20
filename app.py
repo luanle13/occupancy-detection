@@ -9,7 +9,8 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-model = load_model('./model')
+options = tf.saved_model.LoadOptions(experimental_io_device='/job:localhost')
+model = tf.saved_model.load('./model', options=options)
 df_train = pd.read_csv('./data/datatrain.csv')
 df_train = df_train.drop('Occupancy', axis=1).drop('date', axis=1)
 scaler = StandardScaler()
