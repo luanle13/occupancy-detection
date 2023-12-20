@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
 import tensorflow as tf
 from keras.models import load_model
-import tensorflow_text
 import pandas as pd
 import os
 from sklearn.preprocessing import LabelEncoder, StandardScaler
