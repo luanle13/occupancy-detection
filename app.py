@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import tensorflow as tf
 from keras.models import load_model
+import tensorflow_text
 import pandas as pd
 import os
 from sklearn.preprocessing import LabelEncoder, StandardScaler
@@ -9,9 +10,9 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-options = tf.saved_model.LoadOptions(experimental_io_device='/job:localhost')
-model = tf.saved_model.load('./model', options=options)
-df_train = pd.read_csv('./data/datatrain.csv')
+# options = tf.saved_model.LoadOptions(experimental_io_device='/job:localhost')
+model = load_model('./model.h5')
+df_train = pd.read_csv('datatrain.csv')
 df_train = df_train.drop('Occupancy', axis=1).drop('date', axis=1)
 scaler = StandardScaler()
 scaler.fit(df_train)
