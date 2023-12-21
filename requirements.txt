@@ -6,3 +6,4 @@ tensorflow
 Flask
 flask-cors
 matplotlib
+joblib
