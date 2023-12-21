@@ -1,15 +1,13 @@
 from flask import Flask, request, jsonify
-import tensorflow as tf
-from keras.models import load_model
 import pandas as pd
-import os
-from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.preprocessing import StandardScaler
 from flask_cors import CORS
 import pickle
 
 
 app = Flask(__name__)
-CORS(app)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 # options = tf.saved_model.LoadOptions(experimental_io_device='/job:localhost')
 with open('svm_model.pkl', 'rb') as model_file:
     loaded_svm_model = pickle.load(model_file)
@@ -58,5 +56,5 @@ def predict():
     return jsonify(result)
 
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+# if __name__ == '__main__':
+#     app.run('127.0.0.1', port=5000)
